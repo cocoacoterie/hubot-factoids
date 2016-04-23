@@ -18,7 +18,7 @@
 #   hubot remember <factoid> - remember a factoid
 #   hubot drop <factoid> - permanently forget a factoid
 #   hubot factoids - get a link to the raw factoid data
-#   !<factoid> - play back a factoid
+#   hubot !<factoid> - play back a factoid
 #
 # Author:
 #   therealklanni
@@ -31,16 +31,6 @@ module.exports = (robot) ->
     res.end JSON.stringify @factoids.data, null, 2
 
   prefix = process.env.HUBOT_FACTOID_PREFIX or '!'
-
-  robot.hear new RegExp("^[#{prefix}]([\\w\\s-]{2,}\\w)( @.+)?", 'i'), (msg) =>
-    fact = @factoids.get msg.match[1]
-    to = msg.match[2]
-    if not fact? or fact.forgotten
-      msg.reply "Not a factoid"
-    else
-      fact.popularity++
-      to ?= msg.message.user.name
-      msg.send "#{to.trim()}: #{fact.value}"
 
   robot.respond /learn (.{3,}) = ([^@].+)/i, (msg) =>
     [key, value] = [msg.match[1], msg.match[2]]
@@ -102,3 +92,14 @@ module.exports = (robot) ->
         msg.reply "OK, #{factoid} has been dropped"
       else msg.reply "Not a factoid"
     else msg.reply "You don't have permission to do that."
+
+  robot.respond /(.{3,})/i, (msg) =>
+    fact = @factoids.get msg.match[1]
+    to = undefined
+    if not fact? or fact.forgotten
+      # Not a factoid
+    else
+      fact.popularity++
+      to ?= msg.message.user.name
+      msg.send "#{fact.value}"
+
