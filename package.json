@@ -1,11 +1,11 @@
 {
   "name": "hubot-factoids",
   "description": "Factoids for Hubot",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "author": {
-    "name": "Kevin Lanni",
-    "email": "therealklanni@gmail.com",
-    "url": "https://github.com/therealklanni"
+    "name": "Cotty Kay",
+    "email": "cocoacotty@icloud.com",
+    "url": "https://github.com/cocoacoterie"
   },
   "license": "MIT",
   "keywords": [
@@ -15,10 +15,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/hubot-scripts/hubot-factoids.git"
+    "url": "git://github.com/cocoacoterie/hubot-factoids.git"
   },
   "bugs": {
-    "url": "https://github.com/hubot-scripts/hubot-factoids/issues"
+    "url": "https://github.com/cocoacoterie/hubot-factoids/issues"
   },
   "dependencies": {
     "coffee-script": "~1.6"
